@@ -1,0 +1,2 @@
+class Racket < ApplicationRecord
+end
