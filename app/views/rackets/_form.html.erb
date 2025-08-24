@@ -1,0 +1,92 @@
+<%= form_with model: @racket, class: "new_racket" do |f| %>
+  <div class="container mx-auto grid grid-cols-2 gap-2">
+
+      <!-- 使用ラケット名 -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+        <%= f.label '種類:' %>
+        <%= f.text_field :product_name, class: "w-full border border-x-gray-500 border-y-gray-500 " %>
+      </div>
+       <!-- 使用ラケットのメーカー名 -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+        <%= f.label 'メーカー:' %>
+        <%= f.text_field :maker_name, class: "w-full border border-x-gray-500 border-y-gray-500 "%>
+      </div>
+
+     <!-- 使用ラケットの画像 -->
+    <div class="grid grid-cols-2 text-end text-2xl my-1 py-1 ">
+      <%= f.label 'ラケット画像:', class: "px-2"%>
+      <%= f.file_field :images, multiple: true, accept: 'jpeg/png/gif', class: "text-1xl" %>
+    </div>
+
+    <!-- 使用ラケットのフェイスサイズ -->
+    <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <%= f.label 'フェイスサイズ/inch' %>
+      <%= f.number_field :face_size, in: 1..200, class: "w-full border border-x-gray-500 border-y-gray-500 " %>
+    </div>
+
+	<!-- 使用ラケットのガット（縦）の種類 -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+        <%= f.label '使用ガット(縦)' %>
+        <%= f.text_field :main_string, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+      </div>
+
+  <!-- 使用ラケットのガット（横）の種類 -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+        <%= f.label '使用ガット(横)' %>
+        <%= f.text_field :cross_string, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+      </div>
+
+  <!-- ガットのテンション(縦) -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+        <%= f.label '縦ガットのテンション' %>
+        <%= f.number_field :main_string_tension, in: 1..100, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+      </div>
+
+	<!-- ガットのテンション(横) -->
+    <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <%= f.label '横ガットのテンション' %>
+      <%= f.number_field :cross_string_tension, in: 1..100, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+    </div>
+
+
+  <!-- グリップの太さ -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <%= f.label 'グリップの太さ' %>
+      <%= f.number_field :grip_size, in: 1..20, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+    </div>
+
+  <!-- グリップテープ -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <%= f.label 'グリップテープ' %>
+      <%= f.text_field :grip_tape, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+	  </div>
+
+	<!-- 重りの使用箇所 -->
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <%= f.label '重りの使用箇所' %>
+      <%= f.text_field :weight_position, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+    </div>
+
+  
+  <!-- タグ機能は本リリースにて実装 -->
+  <!--
+      <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+      <% f.label 'タグ' %>
+      <% f.text_area :tag, class: "w-full border border-x-gray-500 border-y-gray-500 "  %>
+    </div>
+  -->
+
+    <!-- 自由記載エリア -->
+    <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1 ">
+      <%= f.label 'その他' %>
+      <%= f.text_area :body, class: "border border-x-gray-500 border-y-gray-500 "  %>
+    </div>
+  </div>
+
+
+  <!-- 送信ボタンの作成 -->
+	<div class="container mx-auto items-center w-full text-center mt-">
+    <%= f.submit '投稿', class: "text-3xl text-white bg-green px-5 py-2 rounded-md " %>
+	</div>
+<% end %>
+

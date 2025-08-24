@@ -1,0 +1,108 @@
+
+<h1 class="text-7xl font-semibold text-center ">投稿詳細画面</h1>
+  <div class= "text-2xl flex justify-center">
+    <div>
+      <div class="mb-2">
+      <% if @racket.images.attached? %>
+        <% @racket.images.each do |image| %>
+        <%= image_tag image.variant(resize_to_fit: [500, 400]) %>
+        <% end %>
+      <% else %>
+      <%= image_tag 'temporary _sample.png', width: "500", height: "400" %>
+     <% end %>
+      </div>
+
+      <div class= "my-2">
+      <label>更新日:</label>
+	    <%= @racket.created_at %>
+      </div>
+
+      <div class= "my-2">
+        <label>種類:</label>
+        <%= @racket.product_name %>
+      </div>
+
+      <div class= "my-2">
+        <label>メーカー:</label>
+        <%= @racket.maker_name %>
+      </div>
+
+      <div class= "my-2">
+        <label>フェイスサイズ:</label>
+        <%= @racket.face_size %>
+      </div>
+
+  <!-- 使用中のガット(縦)の種類 -->
+      <div class= "my-2">
+        <label>使用ガット(縦):</label>
+        <%= @racket.main_string %>
+      </div>
+
+  <!-- 使用中のガット(横)の種類 -->
+      <div class= "my-2">
+        <label>使用ガット(横):</label>
+        <%= @racket.cross_string %>
+      </div>
+
+ <!-- ガットのテンション(縦）-->
+      <div class= "my-2">
+        <label>縦ガットのテンション:</label>
+	      <%= @racket.main_string_tension %>
+      </div>
+
+   <!-- ガットのテンション(横）-->
+      <div class= "my-2">
+        <label>横ガットのテンション:</label>
+        <%= @racket.cross_string_tension %>
+      </div>
+
+  <!-- 重りの使用箇所-->
+      <div class= "my-2">
+        <label>重りの使用箇所:</label>
+        <%= @racket.weight_position %>
+      </div>
+
+  <!-- グリップの太さ -->
+      <div class= "my-2">
+        <label>グリップの太さ:</label>
+        <%= @racket.grip_size %>
+      </div>
+
+  <!-- グリップテープ -->
+      <div class= "my-2">
+        <label>グリップのテープ:</label>
+        <%= @racket.grip_tape %>
+      </div>
+
+  <!-- タグ機能は本リリースにて実装 -->
+
+<!-- 自由記載エリア -->
+      <div class= "my-2">
+        <label>その他:</label>
+        <%= @racket.body %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 投稿、削除、コメント機能はログインしていることを前提に表示する -->
+  <%if user_signed_in? %>
+    <div class= 'mt-2 text-center'>
+      <!--  投稿編集、削除機能 -->
+      <% if current_user.own?(@racket) %>
+        <%= link_to '編集', edit_racket_path(@racket), class: "text-2xl text-white bg-blue px-5 py-2 rounded-md " %>
+        <%= link_to '削除', racket_path(@racket), data: { turbo_method: :delete, turbo_confirm: '削除しますか?'} , class: "text-2xl text-white bg-red px-5 py-2 rounded-md " %>
+      <% end %>
+    </div>
+
+    <!-- コメント機能 -->
+    <div class="shadow-md max-w-2xl  mx-auto mt-8">
+    <!-- コメント投稿フォーム -->
+      <div>
+        <%= render 'comments/form', comment: @comment, racket:@racket %>
+      </div>
+    <!-- コメント一覧画面 -->
+      <div>
+        <%= render @comments %>
+      </div>
+    </div>
+  <% end %>

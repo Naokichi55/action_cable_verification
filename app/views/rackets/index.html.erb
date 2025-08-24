@@ -1,1 +1,46 @@
-<h1 class="text-4xl text-green-700 font-semibold underline">Hello,world</h1>
+<h1 class="text-4xl text-green-700 font-semibold text-center">投稿一覧画面</h1>
+  <div class="mx-24 grid grid-cols-3 gap-8">
+    <% if @rackets.present? %>
+      <% @rackets.each do |racket| %>
+      <div class= "grid" >
+        <div>
+          <% if racket.images.attached? %>
+            <% racket.images.each do |image| %>
+              <%= image_tag image.variant(resize_to_fit: [300, 200]) %>
+            <% end %>
+          <% else %>
+            <%= image_tag 'temporary _sample.png', width: 300, height: "200" %>
+          <% end %>
+        </div>
+        <div>
+          <% if racket.user.profile.present? %>
+            <div class = "underline">
+              <%= link_to racket.user.name, profile_path(racket.user) %>
+            </div>
+          <% else %>
+            <%= racket.user.name %>
+          <% end %>
+        </div>
+        <div class = "underline">
+          <%= link_to racket.product_name, racket_path(racket) %> <!-- 名前を押すことで詳細画面へ遷移 -->
+        </div>
+        <div>
+          <%= racket.maker_name %>
+        </div>
+        <div>
+          <%= racket.created_at %>
+			  </div>
+        <div>
+          <% if user_signed_in? %> <!-- ユーザーがログインしているか確認 -->
+            <% if current_user.own?(racket) %> <!-- 投稿ユーザーがログインユーザー確認 -->
+              <%= link_to '編集', edit_racket_path(racket) %>
+              <%= link_to '削除', racket_path(racket), data: { turbo_method: :delete, turbo_confirm: '削除しますか?'} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+	  <% else %>
+      <p> 投稿がありません </p>
+    <% end %>
+  </div>
