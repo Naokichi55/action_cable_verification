@@ -1,0 +1,6 @@
+<!-- フラッシュメッセージを表示 -->
+<% flash.each do | message_type ,message| %>
+  <div class= "<%= message_type %>" >
+    <%= message %>
+	</div>
+<% end %>
