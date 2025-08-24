@@ -7,11 +7,6 @@
     <div class = 'space-x-12'>
       <% if user_signed_in? %>
         <%= link_to '投稿画面へ', new_racket_path %>
-        <% if current_user.profile.present? %>
-          <%= link_to 'プロフィール編集画面へ', edit_profile_path(current_user.profile) %>
-        <% else %>
-          <%= link_to 'プロフィール投稿画面へ', new_profile_path %>
-        <% end %>
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete} %>
       <% else %>
         <%= link_to "新規登録", new_user_registration_path %>

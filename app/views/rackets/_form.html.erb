@@ -13,17 +13,13 @@
       </div>
 
      <!-- 使用ラケットの画像 -->
-    <div class="grid grid-cols-2 text-end text-2xl my-1 py-1 ">
-      <%= f.label 'ラケット画像:', class: "px-2"%>
-      <%= f.file_field :images, multiple: true, accept: 'jpeg/png/gif', class: "text-1xl" %>
-    </div>
-
     <!-- 使用ラケットのフェイスサイズ -->
-    <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
+    <!--
+		<div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
       <%= f.label 'フェイスサイズ/inch' %>
       <%= f.number_field :face_size, in: 1..200, class: "w-full border border-x-gray-500 border-y-gray-500 " %>
     </div>
-
+    -->
 	<!-- 使用ラケットのガット（縦）の種類 -->
       <div class="grid grid-cols-2 gap-3 text-end text-2xl my-1 py-1">
         <%= f.label '使用ガット(縦)' %>
@@ -86,7 +82,7 @@
 
   <!-- 送信ボタンの作成 -->
 	<div class="container mx-auto items-center w-full text-center mt-">
-    <%= f.submit '投稿', class: "text-3xl text-white bg-green px-5 py-2 rounded-md " %>
+    <%= f.submit '投稿', class: "text-3xl text-black bg-green px-5 py-2 rounded-md " %>
 	</div>
 <% end %>
 
