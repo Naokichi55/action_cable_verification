@@ -2,16 +2,6 @@
 <h1 class="text-7xl font-semibold text-center ">投稿詳細画面</h1>
   <div class= "text-2xl flex justify-center">
     <div>
-      <div class="mb-2">
-      <% if @racket.images.attached? %>
-        <% @racket.images.each do |image| %>
-        <%= image_tag image.variant(resize_to_fit: [500, 400]) %>
-        <% end %>
-      <% else %>
-      <%= image_tag 'temporary _sample.png', width: "500", height: "400" %>
-     <% end %>
-      </div>
-
       <div class= "my-2">
       <label>更新日:</label>
 	    <%= @racket.created_at %>
@@ -89,8 +79,8 @@
     <div class= 'mt-2 text-center'>
       <!--  投稿編集、削除機能 -->
       <% if current_user.own?(@racket) %>
-        <%= link_to '編集', edit_racket_path(@racket), class: "text-2xl text-white bg-blue px-5 py-2 rounded-md " %>
-        <%= link_to '削除', racket_path(@racket), data: { turbo_method: :delete, turbo_confirm: '削除しますか?'} , class: "text-2xl text-white bg-red px-5 py-2 rounded-md " %>
+        <%= link_to '編集', edit_racket_path(@racket), class: "text-2xl text-black bg-blue px-5 py-2 rounded-md " %>
+        <%= link_to '削除', racket_path(@racket), data: { turbo_method: :delete, turbo_confirm: '削除しますか?'} , class: "text-2xl text-black bg-red px-5 py-2 rounded-md " %>
       <% end %>
     </div>
 
