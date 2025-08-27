@@ -3,7 +3,7 @@
     <%= form_with model:comment, url:racket_comments_path(racket) do |f| %>
 	    <%= f.label "コメント", class:"text-2xl" %>
       <%= f.text_area :body, class: "w-full border border-x-gray-500 border-y-gray-500 ", rows:"4" %>
-      <%= f.submit "投稿" , class: "text-2x1 text-white bg-green px-5 py-2 rounded-md" %>
+      <%= f.submit "投稿" , class: "text-2x1 text-black bg-green px-5 py-2 rounded-md" %>
 		<% end %>
   </div>
 </div>

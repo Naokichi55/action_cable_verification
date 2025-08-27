@@ -1,15 +1,14 @@
 <div>
   <!-- 本リリース時にuserのアイコンを表示できるように実装 -->
-	<div class="bg-orange-700  text-white my-2 rounded-md ">
+	<div >
 		<div>
 		  <%= comment.user.name %>
 		</div>
 		  <%= simple_format(comment.body)%>
     <% if current_user.own?(comment) %>
-	    
         <!-- 編集機能は本リリース時に実装" -->
 			<div class="text-end">
-			  <%= link_to"削除", comment_path(comment), class: "text-white bg-red rounded-md pt-2 pb-1 pl-2 pr-1" ,data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+			  <%= link_to"削除", comment_path(comment), class: "text-black bg-red rounded-md pt-2 pb-1 pl-2 pr-1" ,data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
 		  </div>
 	   <% end %>
 	</div>

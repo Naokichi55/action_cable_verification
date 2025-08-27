@@ -43,6 +43,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  
+ # binding.pryの導入
+  gem "pry-byebug"
+
 end
 
 group :development do
@@ -62,3 +67,4 @@ gem "tailwindcss-ruby", "3.4.17"
 
 # deviseを追加
 gem 'devise'
+
