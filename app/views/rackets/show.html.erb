@@ -84,6 +84,24 @@
       <% end %>
     </div>
 
+<!-- 卒制のコメント投稿内容を記載 -->
+<!-- コメント機能 -->
+  <div class="shadow-md max-w-2xl mx-auto mt-8">
+  <!-- コメント投稿フォーム -->
+  <div>
+    <%= render 'comments/form', comment: @comment, racket:@racket %>
+  </div>
+
+  <div data-racket-id="<%= @racket.id %>">
+    <div id="table-comment">
+      <%= render @comments %>
+    </div>
+  </div>
+<% end %>
+
+<%
+=begin
+# 元のコメントをコメントをコメントアウト
     <!-- コメント機能 -->
     <div class="shadow-md max-w-2xl  mx-auto mt-8">
     <!-- コメント投稿フォーム -->
@@ -96,3 +114,5 @@
       </div>
     </div>
   <% end %>
+<% 
+=end %>
