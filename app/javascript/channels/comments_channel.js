@@ -25,27 +25,45 @@ if(racketId){
       console.log("Disconnected from comments channel")
       //サブスクリプションがサーバー上で終了した時に呼び出される
     },
-//データを受け取った時の処理について記載。
   received(data){
-      console.log("Received data:", data);
-      //リアルタイムでコメントを追加
-      //table-commentをracket-idに変更すると投稿がワンクリックで2回コメントが投稿される。
-    const  commentsContainer = document.getElementById('table-comment')
-    console.log("Comments container:", commentsContainer);
-
-    if(commentsContainer && data.comment) {
-      commentsContainer.insertAdjacentHTML('afterbegin', data.comment);
-      console.log("Comment add successfully");
+    console.log("Received", data);
+    //データを追加する動作を記載。リアルタイムでコメントを追加。
+    if(data.action === 'destroy'){
+      document.getElementById('table-comment')?.insertAdjacentHTML?.insertAdjacentHTML('afterbegin', data.comment);
     }else{
       console.error("Comments container not found or no comment data");
-     }
     }
-    });
-  }else{
-    console.log("No");
-    //チャンネルのWebSocketで受信データがあるときに呼び出される。
-  }
+    if(data.action === 'destroy'){
+      document.getElementById(`comment_${data.comment_id}`)?.remove();
+    }
+    }
   });
+}});
+//
+
+  
+  //データを受け取った時の動作をコメントアウト。createとdestroyでコメント内容を避けるため
+    //データを受け取った時の処理について記載。
+  // received(data){
+  //     console.log("Received data:", data);
+  //     //リアルタイムでコメントを追加
+  //     //table-commentをracket-idに変更すると投稿がワンクリックで2回コメントが投稿される。
+  //   const  commentsContainer = document.getElementById('table-comment')
+  //   console.log("Comments container:", commentsContainer);
+
+  //   if(commentsContainer && data.comment) {
+  //     commentsContainer.insertAdjacentHTML('afterbegin', data.comment);
+  //     console.log("Comment add successfully");
+  //   }else{
+  //     console.error("Comments container not found or no comment data");
+  //    }
+  //   }
+  //   });
+  // }else{
+  //   console.log("No");
+  //   //チャンネルのWebSocketで受信データがあるときに呼び出される。
+  // }
+  // });
 
 // 元々記載していた内容をコメントアウト
 // import consumer from "./consumer"
