@@ -1,6 +1,5 @@
 import consumer from "./consumer"
 
-
 document.addEventListener('DOMContentLoaded', function(){
 // constにて変数を定義
   const racketElement = document.querySelector('[data-racket-id]');
@@ -28,8 +27,8 @@ if(racketId){
   received(data){
     console.log("Received", data);
     //データを追加する動作を記載。リアルタイムでコメントを追加。
-    if(data.action === 'destroy'){
-      document.getElementById('table-comment')?.insertAdjacentHTML?.insertAdjacentHTML('afterbegin', data.comment);
+    if(data.action === 'create'){
+      document.getElementById('table-comment')?.insertAdjacentHTML('afterbegin', data.comment);
     }else{
       console.error("Comments container not found or no comment data");
     }

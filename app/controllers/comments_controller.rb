@@ -7,7 +7,7 @@ def create
 
   if @comment.save
       CommentsChannel.broadcast_to(
-        "racket_#{@racket.id}_comments",
+        @racket,
         {
           action: 'create', #destoryアクションを追加するにあたりアクション分けを追加
           comment: render_to_string(
