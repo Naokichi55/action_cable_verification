@@ -7,7 +7,7 @@ def create
 
   if @comment.save
       CommentsChannel.broadcast_to(
-        @racket,
+        "racket_#{params[:racket_id]}_comments",
         {
           action: 'create', #destoryアクションを追加するにあたりアクション分けを追加
           comment: render_to_string(
@@ -16,6 +16,7 @@ def create
           )
         }
       )
+      head :ok #投稿した際にページへ戻る動作がないため、追加。
     else
       redirect_to racket_path(comment.racket), danger: "コメント投稿に失敗しました"
   end
