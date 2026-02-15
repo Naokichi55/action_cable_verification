@@ -4,7 +4,7 @@
       <% @rackets.each do |racket| %>
       <div class= "grid" >
         <div class = "underline">
-          <%= link_to racket.product_name, racket_path(racket) %> <!-- 名前を押すことで詳細画面へ遷移 -->
+          <%= link_to racket.product_name, racket_path(racket), data: { turbo: false } %> <!-- 名前を押すことで詳細画面へ遷移 -->
         </div>
         <div>
           <%= racket.maker_name %>
