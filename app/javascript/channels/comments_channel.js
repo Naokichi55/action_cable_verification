@@ -1,6 +1,9 @@
 import consumer from "./consumer"
 
-document.addEventListener('DOMContentLoaded', function(){
+//`document.addEventListener('turbo:load',function(){`にしたところ投稿が2つ連続で行われたり、リロードしないと削除ボタンが表示される事象が発生。
+
+
+document.addEventListener('DOMContentLoaded',function(){
 // constにて変数を定義
   const racketElement = document.querySelector('[data-racket-id]');
   const racketId = racketElement?.dataset.racketId;

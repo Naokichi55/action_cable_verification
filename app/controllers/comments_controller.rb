@@ -16,7 +16,8 @@ def create
           )
         }
       )
-      head :ok #投稿した際にページへ戻る動作がないため、追加。
+      redirect_to racket_path(@comment.racket)
+      # head :ok #投稿した際にページへ戻る動作がないため、追加。
     else
       redirect_to racket_path(comment.racket), danger: "コメント投稿に失敗しました"
   end
