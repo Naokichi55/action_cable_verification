@@ -1,4 +1,5 @@
-<div>
+<!--  data-user-id属性を追加して、コメント投稿のIDを埋め込む -->
+<div id="comment-<%= comment.id %>" data-user-id="<%= comment.user_id %>"> <!-- 不要なスペースを削除 -->
   <!-- 本リリース時にuserのアイコンを表示できるように実装 -->
 	<div >
 		<div>
@@ -10,7 +11,11 @@
     <% if current_user.own?(comment) %>
 		  <div class="text-end">
         <!-- 編集機能は本リリース時に実装" -->
-			  <%= link_to"削除", comment_path(comment), class: "text-black bg-red rounded-md pt-2 pb-1 pl-2 pr-1" ,data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+				<!-- js側で条件分岐できるようにclass:に"delete-button"を追加しました -->
+			  <%= link_to"削除", 
+                    comment_path(comment), 
+										class: "delete-button text-black bg-red rounded-md pt-2 pb-1 pl-2 pr-1" ,
+										data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
       </div>
 		<% end %>
 		  

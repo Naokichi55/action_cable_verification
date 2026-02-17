@@ -9,9 +9,12 @@ document.addEventListener('DOMContentLoaded',function(){
   const racketId = racketElement?.dataset.racketId;
 //データを受け取った時の処理について記載。
 //constにて変数を定義
+//現在のユーザー　IDを取得
+const currentUserId = racketElement?.dataset.currentUserId;
 
-  console.log('Racket Id', racketId);
+  console.log('Racket Id:', racketId);
   console.log('Racket Element:', racketElement);
+  console.log('Current User Id:', currentUserId);
 
 if(racketId){
   const subscription = consumer.subscriptions.create({
@@ -31,7 +34,31 @@ if(racketId){
     console.log("Received", data);
     //データを追加する動作を記載。リアルタイムでコメントを追加。
     if(data.action === 'create'){
-      document.getElementById('table-comment')?.insertAdjacentHTML('afterbegin', data.comment);
+    // コメントIDで条件分岐をする際に変数を設定をした方が少なくて済むため変数を追加
+    const tableComment = document.getElementById('table-comment');
+
+    if(tableComment){
+      //HTMLを挿入
+      tableComment.insertAdjacentHTML('afterbegin',data.comment);
+
+      //挿入した最新のコメント要素を取得
+      const newComment = tableComment.firstElementChild; //タイポを修正 `firstELementChild`からfirstElementChild`
+
+     //コメント投稿者のIDを取得
+     const commentUserId = newComment?.dataset.userId;
+
+     console.log('Comment User Id:', commentUserId);
+     console.log('Current User Id:', currentUserId);
+
+      //投稿者と現在のユーザーが異なる場合、削除ボタンを非表示
+      if(commentUserId !== currentUserId) {
+        const deleteButton = newComment.querySelector('.delete-button');
+        if (deleteButton){
+          deleteButton.style.display = 'none';
+          console.log('Delete button hidden for other user '); //削除ボタンが投稿ユーザー以外で消えているかの確認のためにボタン
+        }
+      }
+    }
     }else{
       console.error("Comments container not found or no comment data");
     }
