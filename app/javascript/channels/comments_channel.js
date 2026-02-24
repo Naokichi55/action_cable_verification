@@ -63,7 +63,7 @@ if(racketId){
       console.error("Comments container not found or no comment data");
     }
     if(data.action === 'destroy'){
-      document.getElementById(`comment_${data.comment_id}`)?.remove();
+      document.getElementById(`comment-${data.comment_id}`)?.remove(); //HTMLのIDに合わせるために`document.getElementById(`comment_${data.comment_id}`?.remove();)`をdocument.getElementById(`comment-${data.comment_id}`?.remove();)`に変更
     }
     }
   });

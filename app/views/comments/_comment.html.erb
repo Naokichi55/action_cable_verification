@@ -15,7 +15,7 @@
 			  <%= link_to"削除", 
                     comment_path(comment), 
 										class: "delete-button text-black bg-red rounded-md pt-2 pb-1 pl-2 pr-1" ,
-										data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+										data: { turbo_method: false, confirm: '削除しますか？'} %> <!-- `turbo_method: :delete, turbo_confirm: '削除しますか?`をturboを無効化する内容に変更" -->
       </div>
 		<% end %>
 		  

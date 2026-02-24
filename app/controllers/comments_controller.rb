@@ -37,18 +37,20 @@ end
   # end
 
   def destroy
-    @comment = current_user.comment.find(params[:id])
-    @racket = @comment.racket
-    @comment.destroy
+    @comment = current_user.comments.find(params[:id])
 
-    CommentChannel.broadcast_to(
-      @racket,
+    if @comment.destroy
+    CommentsChannel.broadcast_to(
+      "racket_#{params[:racket_id]}_comments",
       {
         action: 'destroy',
         comment_id: @comment.id
       }
-
     )
+    head :ok
+    else
+    head :unprocessable_entity
+    end
   end
 
   #　コメント投稿機能と分けるためにコードを分けて記載
