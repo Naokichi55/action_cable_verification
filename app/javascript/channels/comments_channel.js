@@ -58,17 +58,55 @@ if(racketId){
           console.log('Delete button hidden for other user '); //削除ボタンが投稿ユーザー以外で消えているかの確認のためにボタン
         }
       }
-    }
     }else{
       console.error("Comments container not found or no comment data");
+     }
     }
     if(data.action === 'destroy'){
-      document.getElementById(`comment_${data.comment_id}`)?.remove();
+      const commentElement = document.getElementById(`comment-${data.comment_id}`)
+      if(commentElement) {
+      commentElement.remove(); //HTMLのIDに合わせるために`document.getElementById(`comment_${data.comment_id}`?.remove();)`をdocument.getElementById(`comment-${data.comment_id}`?.remove();)`に変更
+      console.log(`Comment ${data.comment_id} removed`)
+      } else {
+        console.error(`Comment ${data.comment_id}not found`);
+      }
     }
-    }
+   }
   });
-}});
-//
+ }
+
+//削除ボタンのイベント処理（イベント譲渡)
+document.addEventListener('click', function(e){
+  if (e.target.classList.contains('delete-button')){
+    e.preventDefault();
+
+    const confirmMessage = e.target.dataset.confirm;
+    if(!confirm(confirmMessage)){
+      return;
+    }
+
+    const url = e.target.href;
+    //fetchでDELETEリクエスト
+    fetch(url,{
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content,
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+     if(!response.ok) {
+      alert('削除に失敗しました！');
+     }
+    // Action Cableが削除を通知してくれるので、ここでのDOM操作不要
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('エラーが発生しました');
+    });
+  }
+  });
+});
 
   
   //データを受け取った時の動作をコメントアウト。createとdestroyでコメント内容を避けるため
