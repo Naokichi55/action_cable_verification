@@ -58,15 +58,17 @@ if(racketId){
           console.log('Delete button hidden for other user '); //削除ボタンが投稿ユーザー以外で消えているかの確認のためにボタン
         }
       }
-    }
     }else{
       console.error("Comments container not found or no comment data");
+     }
     }
     if(data.action === 'destroy'){
       const commentElement = document.getElementById(`comment-${data.comment_id}`)
       if(commentElement) {
       commentElement.remove(); //HTMLのIDに合わせるために`document.getElementById(`comment_${data.comment_id}`?.remove();)`をdocument.getElementById(`comment-${data.comment_id}`?.remove();)`に変更
       console.log(`Comment ${data.comment_id} removed`)
+      } else {
+        console.error(`Comment ${data.comment_id}not found`);
       }
     }
    }

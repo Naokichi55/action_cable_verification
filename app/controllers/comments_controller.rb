@@ -7,7 +7,7 @@ def create
 
   if @comment.save
       CommentsChannel.broadcast_to(
-        "racket_#{racket_id}_comments",
+        "racket_#{@racket.id}_comments",
         {
           action: 'create', #destoryアクションを追加するにあたりアクション分けを追加
           comment: render_to_string(
@@ -43,7 +43,7 @@ end
     if @comment.destroy
     Rails.logger.info "Broadcasting destroy for comment #{@comment.id} on racket #{racket_id}"
     CommentsChannel.broadcast_to(
-      "racket_#{params[:racket_id]}_comments",
+      "racket_#{racket_id}_comments",
       {
         action: 'destroy',
         comment_id: @comment.id
