@@ -41,7 +41,7 @@ end
     racket_id = @comment.racket_id
 
     if @comment.destroy
-    Rails.logger.info "Broadcasting destroy for comment #{@comment.id} on racket #{racket.id}"
+    Rails.logger.info "Broadcasting destroy for comment #{@comment.id} on racket #{racket_id}"
     CommentsChannel.broadcast_to(
       "racket_#{params[:racket_id]}_comments",
       {
