@@ -1,5 +1,5 @@
 <div>
-  <div class="columns-lg-8 offset-lg-2">
+  <div class="columns-lg-8 offset-lg-2" id="comment-form">
     <%= form_with model:comment, url:racket_comments_path(racket), local: false,  data: { turbo: false } do |f| %>
 	    <%= f.label "コメント", class:"text-2xl" %>
       <%= f.text_area :body, class: "w-full border border-x-gray-500 border-y-gray-500 ", rows:"4" %>

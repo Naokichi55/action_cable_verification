@@ -43,7 +43,11 @@ if(racketId){
 
       //挿入した最新のコメント要素を取得
       const newComment = tableComment.firstElementChild; //タイポを修正 `firstELementChild`からfirstElementChild`
-
+      //フォームをクリア
+      const form = document.querySelector('#comment-form form');
+      if(form){
+        form.reset(); //←フォームをリセット
+      }
      //コメント投稿者のIDを取得
      const commentUserId = newComment?.dataset.userId;
 
@@ -62,6 +66,7 @@ if(racketId){
       console.error("Comments container not found or no comment data");
      }
     }
+
     if(data.action === 'destroy'){
       const commentElement = document.getElementById(`comment-${data.comment_id}`)
       if(commentElement) {
