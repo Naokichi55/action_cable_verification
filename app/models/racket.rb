@@ -5,6 +5,11 @@ class Racket < ApplicationRecord
   has_many_attached :images
   # commentテーブルとのアソシエーション
   has_many :comments, dependent: :destroy
+  # favoriteテーブルとのアソシエーション
+  has_many :favorites, dependent: :destroy
+    def favorite_by(user) #すでにユーザーいいねしている確認する。
+      favorites.exits?(user_id: user.id)
+    end
 
   # ラケット投稿機能のバリデーション
   validates :product_name, presence: true, length: { maximum: 255 }
