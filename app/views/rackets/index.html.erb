@@ -12,6 +12,8 @@
         <div>
           <%= racket.created_at %>
 			  </div>
+        <div id="racket_<%= racket.id %>_favorite ">
+          <%= render "rackets/favorite", racket: racket %>
         <div>
           <% if user_signed_in? %> <!-- ユーザーがログインしているか確認 -->
             <% if current_user.own?(racket) %> <!-- 投稿ユーザーがログインユーザー確認 -->
