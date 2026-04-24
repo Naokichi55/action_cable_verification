@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   # get "rackets/index"
   resources :rackets do
-
   # コメント機能のルーティングを設定
     resources :comments, only: %i[create edit destroy], shallow:true
+  # いいね機能のルーティングを設定
+    resources :favorites, only:[:create, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
