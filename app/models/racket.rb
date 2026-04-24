@@ -7,8 +7,8 @@ class Racket < ApplicationRecord
   has_many :comments, dependent: :destroy
   # favoriteテーブルとのアソシエーション
   has_many :favorites, dependent: :destroy
-    def favorite_by(user) #すでにユーザーいいねしている確認する。
-      favorites.exits?(user_id: user.id)
+    def favorite_by?(user) #すでにユーザーいいねしている確認する。
+      favorites.exists?(user_id: user.id)
     end
 
   # ラケット投稿機能のバリデーション

@@ -1,4 +1,6 @@
 class Favorite < ApplicationRecord
 	belongs_to :user
-	belong_to :racket
+	belongs_to :racket
+
+  validates :user_id, uniqueness: { scope: :racket_id }
 end
